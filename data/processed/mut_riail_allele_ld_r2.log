@@ -1,0 +1,32 @@
+PLINK v1.90b6.21 64-bit (19 Oct 2020)
+Options in effect:
+  --allow-extra-chr
+  --file dfe_riail_mut
+  --ld-snp-list snps.txt
+  --ld-window-r2 0
+  --out mut_riail_allele_ld_r2
+  --r2 inter-chr
+
+Hostname: quser32
+Working directory: /projects/b1059/projects/Tim/manuscript_DFE/data/processed
+Start time: Sat Mar 30 12:26:23 2024
+
+Random number seed: 1711819583
+192637 MB RAM detected; reserving 96318 MB for main workspace.
+Scanning .ped file... done.
+Performing single-pass .bed write (169 variants, 192 people).
+--file: mut_riail_allele_ld_r2-temporary.bed +
+mut_riail_allele_ld_r2-temporary.bim + mut_riail_allele_ld_r2-temporary.fam
+written.
+169 variants loaded from .bim file.
+192 people (0 males, 0 females, 192 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to mut_riail_allele_ld_r2.nosex .
+Using up to 51 threads (change this with --threads).
+Before main variant filters, 192 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.748767.
+169 variants and 192 people pass filters and QC.
+Note: No phenotypes present.
+--r2 inter-chr to mut_riail_allele_ld_r2.ld ... done.
+
+End time: Sat Mar 30 12:26:23 2024
