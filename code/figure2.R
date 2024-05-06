@@ -37,7 +37,7 @@ b <- ggplot(df_ril) +
   annotate(geom = "label", x = mean(df_ril$mean), y = 0.35, size = 3,
            label = glue::glue("{round(mean(df_ril$mean), digits=3)}"),
            color = "darkred") +
-  labs(y = "Freq.", x = expression(paste('RILs (',italic('u'),')'))) +
+  labs(y = "", x = expression(paste('RILs (',italic('u'),')'))) +
   xlim(c(-0.6, 0.2)) +
   ylim(c(0, 0.5)) +
   theme_bw() +
@@ -53,7 +53,7 @@ c <- ggplot(df_riails) +
   annotate(geom = "label", x = mean(df_riails$mean), y = 0.35, size = 3,
            label = glue::glue("{round(mean(df_riails$mean), digits=3)}"),
            color = "darkred") +
-  labs(y = "Freq.", x = expression(paste('RIAILs (',italic('u'),')'))) +
+  labs(y = "", x = expression(paste('RIAILs (',italic('u'),')'))) +
   xlim(c(-0.6, 0.2)) +
   ylim(c(0, 0.5)) +
   scale_y_continuous(labels = scales::number_format(accuracy = 0.1)) +
@@ -64,9 +64,10 @@ c <- ggplot(df_riails) +
 c
 
 # put them together
-fig2 <- cowplot::plot_grid(a, b, c, labels = c("a", "b", "c"), ncol = 1, align = "vh", axis = "tblr", label_size = 12)
+#fig2 <- cowplot::plot_grid(a, b, c, labels = c("a", "b", "c"), ncol = 1, align = "vh", axis = "tblr", label_size = 12)
+fig2 <- cowplot::plot_grid(a, b, c, labels = c("a", "b", "c"), ncol = 3, align = "vh", axis = "tblr", label_size = 12)
 fig2
 
 # save it
-ggsave(fig2, filename = "figures/figure2.png", width = 2.5, height = 6)
-ggsave(fig2, filename = "figures/figure2.pdf", width = 2.5, height = 6)
+ggsave(fig2, filename = "figures/figure2.png", width = 6.25, height = 2.25)
+ggsave(fig2, filename = "figures/figure2.pdf", width = 6.25, height = 2.25)

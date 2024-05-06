@@ -59,7 +59,7 @@ supfig5a <- ggplot(ancestor) +
   geom_histogram(bins = 30, color = "black") + 
   theme_bw() +
   labs(y = "Count",
-       x = expression(paste('Competitive index (',italic('W'),')'))) +
+       x = "") + #expression(paste('Competitive index (',italic('W'),')'))
   scale_x_continuous(limits = c(-3, 3), breaks = seq(-3, 3, by = 1)) +
   theme(panel.grid = element_blank(),
         axis.title = element_text(size = 9),
@@ -74,7 +74,7 @@ supfig5b <- ggplot(neg.pheno) +
   aes(x = ln_ci) +
   geom_histogram(bins = 30, fill = "#D55E00", color = "black") +
   theme_bw() +
-  labs(y = "Count",
+  labs(y = "",
        x = expression(paste('Competitive index (',italic('W'),')'))) +
   scale_x_continuous(limits = c(-3, 3), breaks = seq(-3, 3, by = 1)) +
   theme(panel.grid = element_blank(),
@@ -90,8 +90,8 @@ supfig5c <- ggplot(pos.pheno) +
   aes(x = ln_ci) +
   geom_histogram(bins = 30, fill = "#0072B2", color = "black") +
   theme_bw() +
-  labs(y = "Count",
-       x = expression(paste('Competitive index (',italic('W'),')'))) +
+  labs(y = "",
+       x = "") + #expression(paste('Competitive index (',italic('W'),')'))
   scale_x_continuous(limits = c(-3, 3), breaks = seq(-3, 3, by = 1)) +
   theme(panel.grid = element_blank(),
         axis.title = element_text(size = 9),
@@ -100,8 +100,8 @@ supfig5c
 
 # Put them together
 supfig5 <- cowplot::plot_grid(supfig5a, supfig5b, supfig5c, labels = c("a", "b", "c"), 
-                              label_size = 12, vjust = 1, ncol = 1, align = "vh", axis = "tblr")
+                              label_size = 12, vjust = 1, ncol = 3, align = "vh", axis = "tblr")
 supfig5
 
-cowplot::ggsave2(supfig5, filename = "figures/supplemental_figure5.png", width = 2.5, height = 6)
-cowplot::ggsave2(supfig5, filename = "figures/supplemental_figure5.pdf", width = 2.5, height = 6)
+cowplot::ggsave2(supfig5, filename = "figures/supplemental_figure5.png", width = 6.25, height = 2.25)
+cowplot::ggsave2(supfig5, filename = "figures/supplemental_figure5.pdf", width = 6.25, height = 2.25)

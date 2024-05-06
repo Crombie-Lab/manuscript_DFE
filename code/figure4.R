@@ -37,9 +37,9 @@ join.rils <- post.rils %>%
   dplyr::bind_cols(vars)
 
 # look at correlation between approaches - pearson
-corr.all2 <- round(cor(x=join.all$mean_mar, y=join.all$mean), digits = 3)
-corr.riails <- round(cor(y=join.riails$mean, x=join.riails$mean_mar), digits = 3)
-corr.rils <- round(cor(y=join.rils$mean, x=join.rils$mean_mar), digits = 3)
+corr.all <- round(cor(x=join.all$mean_mar, y=join.all$mean), digits = 3)
+corr.riails <- round(cor(y=join.riails$mean_mar, x=join.riails$mean), digits = 3)
+corr.rils <- round(cor(y=join.rils$mean_mar, x=join.rils$mean), digits = 3)
 
 #------------------------------------------------------------------------------#
 # Plots
@@ -62,7 +62,7 @@ legend <- cowplot::get_legend(legend.p)
 
 fig4a <- ggplot(join.all) +
   scale_color_manual(values = c("MA530" = "#0072B2", "MA563" = "#D55E00")) +
-  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  #geom_abline(slope = 1, intercept = 0, linetype = 2) +
   geom_linerange(aes(x = mean_mar, y = mean,
                      xmin = `CI2.5%_mar`, xmax = `CI97.5%_mar`, color = parent),
                  linewidth = 0.25, alpha = 0.25) +
@@ -87,7 +87,7 @@ fig4a <- ggplot(join.all) +
 fig4a
 fig4b <- ggplot(join.rils) +
   scale_color_manual(values = c("MA530" = "#0072B2", "MA563" = "#D55E00")) +
-  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  #geom_abline(slope = 1, intercept = 0, linetype = 2) +
   geom_linerange(aes(x = mean_mar, y = mean,
                      xmin = `CI2.5%_mar`, xmax = `CI97.5%_mar`, color = parent),
                  linewidth = 0.25, alpha = 0.25) +
@@ -113,7 +113,7 @@ fig4b
 
 fig4c <- ggplot(join.riails) +
   scale_color_manual(values = c("MA530" = "#0072B2", "MA563" = "#D55E00")) +
-  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  #geom_abline(slope = 1, intercept = 0, linetype = 2) +
   geom_linerange(aes(x = mean_mar, y = mean,
                      xmin = `CI2.5%_mar`, xmax = `CI97.5%_mar`, color = parent),
                  linewidth = 0.25, alpha = 0.25) +
