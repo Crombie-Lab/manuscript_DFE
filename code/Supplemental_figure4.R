@@ -7,7 +7,7 @@ setwd(glue::glue("{dirname(rstudioapi::getActiveDocumentContext()$path)}/.."))
 # Get allele freq
 #------------------------------------------------------------------------------#
 # calculate the allele freq from P-matrix
-af <- data.table::fread("/projects/b1059/projects/Tim/manuscript_DFE/data/processed/05_DFE_joined_imputed_prob_geno_pheno.csv") %>%
+af <- data.table::fread("data/processed/05_DFE_joined_imputed_prob_geno_pheno.csv") %>%
   dplyr::distinct(full_id, .keep_all = T) %>%
   dplyr::filter(grepl(full_id, pattern = "RIAIL_|RIL_")) %>%
   dplyr::filter(!is.na(I_113752_snp)) %>%
@@ -25,8 +25,8 @@ vars <- data.table::fread("data/raw/parent_genos.csv") %>%
                 pos = as.numeric(pos))
 
 # read in the bayesian method with posterior effects
-post.all <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIL+RIAIL.csv") 
-post.riails <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIAIL.csv") 
+post.all <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIL+RIAIL.csv")
+post.riails <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIAIL.csv")
 post.rils <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIL.csv")
 
 # read in the marginal effects
@@ -82,11 +82,13 @@ sfig4a <- ggplot(join.all) +
   scale_fill_manual(values = c("MA530" = "#0072B2", "MA563" = "#D55E00")) +
   scale_shape_manual(values = c("indel" = 21, "snp" = 24)) +
   annotate(geom = "text", x = -0.475, y = 0.6, label = glue::glue("r = {mar_corr}"), size = 3) +
-  labs(x = expression(paste('Marginal effect (',italic('u'),')')), y = 'Mutant allele freq.') +
+  #labs(x = expression(paste('Marginal effect (',italic('u'),')')), y = 'Mutant allele freq.') +
+  labs(x="Raw difference (<i>u</i><sub>RAW</sub>)", y = 'Mutant allele freq.') +
   theme_bw() +
   theme(panel.grid = element_blank(),
         axis.title = element_text(size = 9),
         axis.text = element_text(size = 8),
+        axis.title.x = ggtext::element_markdown(),
         legend.position = "none") # legend.background = element_rect(fill = "transparent")
 sfig4a
 
@@ -108,5 +110,5 @@ sfig4ab <- cowplot::plot_grid(sfig4a, sfig4b, labels = c("a", "b"), label_size =
 sfig4 <- cowplot::plot_grid(sfig4ab, legend, labels = c("", ""), ncol = 2, rel_widths = c(1, 0.2))
 sfig4
 
-cowplot::ggsave2(sfig4, filename = "figures/supplemental_figure4.png", width = 6.25, height = 2.25)
+cowplot::ggsave2(sfig4, filename = "figures/supplemental_figure4.png", width = 6.25, height = 2.25, dpi = 350)
 cowplot::ggsave2(sfig4, filename = "figures/supplemental_figure4.pdf", width = 6.25, height = 2.25)

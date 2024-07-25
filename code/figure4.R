@@ -11,8 +11,8 @@ vars <- data.table::fread("data/raw/parent_genos.csv") %>%
                 pos = as.numeric(pos))
 
 # read in the bayesian method with posterior effects
-post.all <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIL+RIAIL.csv") 
-post.riails <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIAIL.csv") 
+post.all <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIL+RIAIL.csv")
+post.riails <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIAIL.csv")
 post.rils <- data.table::fread("data/processed/Table_posterior_mutation_effects_RIL.csv")
 
 # read in the marginal effects
@@ -101,13 +101,15 @@ fig4b <- ggplot(join.rils) +
   scale_fill_manual(values = c("MA530" = "#0072B2", "MA563" = "#D55E00")) +
   scale_shape_manual(values = c("indel" = 21, "snp" = 24)) +
   annotate(geom = "text", x = -0.375, y = 0.275, label = glue::glue("r = {corr.rils}"), size = 3) +
-  labs(x = expression(paste('Marginal effect (',italic('u'),')')), y = "") +
+  #labs(x = expression(paste('Marginal effect (',italic('u'),')')), y = "") +
+  labs(x="Raw difference (<i>u</i><sub>RAW</sub>)", y = "") +
   scale_x_continuous(breaks = c(-0.6, -0.3, 0, 0.3, 0.6)) +
   theme_bw() +
   theme(panel.grid = element_blank(),
         legend.position = "none",
         axis.title = element_text(size = 9),
         legend.text = element_text(size = 9),
+        axis.title.x = ggtext::element_markdown(),
         axis.text = element_text(size = 8))
 fig4b
 
@@ -140,5 +142,5 @@ fig4abc <- cowplot::plot_grid(fig4a, fig4b, fig4c, labels = c("a", "b", "c"),
 fig4 <- cowplot::plot_grid(fig4abc, legend, labels = c("", ""), ncol = 1, rel_heights = c(1,0.1), label_size = 12)
 fig4
 
-cowplot::ggsave2(fig4, filename = "figures/figure4.png", width = 6.25, height = 2.25)
+cowplot::ggsave2(fig4, filename = "figures/figure4.png", width = 6.25, height = 2.25, dpi = 350)
 cowplot::ggsave2(fig4, filename = "figures/figure4.pdf", width = 6.25, height = 2.25)
